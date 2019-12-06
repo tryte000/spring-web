@@ -14,7 +14,7 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--开启扫描-->
-    <context:component-scan base-package="org.nelg.webstart">
+    <context:component-scan base-package="org.nelg.SpringWeb">
         <!--配置注解不扫描-->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
@@ -29,11 +29,16 @@
     </bean>
     <!--配置SqlSession工厂-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--添加连接池-->
         <property name="dataSource" ref="dataSource"/>
+        <!--添加mybatis配置文件路径-->
+        <!--<property name="configLocation" value="classpath:SqlMapConfig.xml"/>-->
+        <!--添加mapper配置文件路径-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
     <!--配置接口所在包-->
     <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="org.nelg.webstart.dao"/>
+        <property name="basePackage" value="org.nelg.SpringWeb.dao"/>
     </bean>
 
     <!--配置Spring框架声明式事务管理器-->
@@ -51,6 +56,6 @@
 
     <!--配置aop增强-->
     <aop:config>
-        <aop:advisor advice-ref="txAdvice" pointcut="execution(* org.nelg.webstart.service.impl.*ServiceImpl.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* org.nelg.SpringWeb.service.impl.*ServiceImpl.*(..))"/>
     </aop:config>
 </beans>
