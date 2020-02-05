@@ -45,8 +45,8 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
-  <!--<welcome-file-list>-->
-  <!--&lt;!&ndash; 默认进入 account controller &ndash;&gt;-->
-  <!--<welcome-file>account</welcome-file>-->
-  <!--</welcome-file-list>-->
+  <welcome-file-list>
+  <!-- 默认进入-->
+  <welcome-file>login</welcome-file>
+  </welcome-file-list>
 </web-app>
