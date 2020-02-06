@@ -13,7 +13,7 @@
 
     <!--开启扫描，只扫描Controller-->
     <context:component-scan base-package="org.nelg">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
     <!--视图解析器-->
@@ -23,8 +23,8 @@
     </bean>
 
     <!--过滤静态资源不解析-->
-    <mvc:resources mapping="/css/" location="/WEB-INF/css/**" />
-    <mvc:resources mapping="/images/" location="/WEB-INF/images/**" />
-    <mvc:resources mapping="/js/" location="/WEB-INF/js/**" />
+    <mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>
+    <mvc:resources mapping="/images/**" location="/WEB-INF/images/"/>
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
     <mvc:annotation-driven/>
 </beans>

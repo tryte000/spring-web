@@ -17,53 +17,31 @@
     <link rel="stylesheet" type="text/css" href="/css/stylesheets/minimal.css">
     <link rel="stylesheet" type="text/css" href="/css/stylesheets/theme.css">
     <link rel="stylesheet" type="text/css" href="/css/stylesheets/premium.css">
-    <link rel="stylesheet" type="text/css"
-          href="/css/stylesheets/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" type="text/css" href="/css/stylesheets/bootstrap-table.min.css">
 
     <script type="text/javascript" src="/js/pub/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="/js/pub/jquery.knob.js"></script>
     <script type="text/javascript" src="/js/pub/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/pub/bootstrap-table.min.js"></script>
     <script type="text/javascript" src="/js/pub/bootstrap-table-zh-CN.min.js"></script>
-    <script type="text/javascript" src="/js/pub/bootstrap-datetimepicker.min.js"
-            charset="UTF-8"></script>
-    <script type="text/javascript" src="/js/pub/bootstrap-datetimepicker.zh-CN.js"
-            charset="UTF-8"></script>
 
 
     <script type="text/javascript" src="/js/layer/layer.js"></script>
     <script type="text/javascript" src="/js/operate.js"></script>
     <script type="text/javascript">
-        $(function () {
-            $(".knob").knob();
-            $('#datetimepicker').datetimepicker({
-                language: 'zh-CN',
-                weekStart: 1,
-                todayBtn: 1,
-                autoclose: 1,
-                todayHighlight: 1,
-                startView: 2,
-                forceParse: 0,
-                showMeridian: 1
-            });
-        });
 
         $(document).ready(function () {
             changecode();
-            document.getElementById("showimg").onload = function () {
-                $.post('<?php echo site_url('
-                code / get
-                ');?>', {}, function (result) {
-                    $("#randcode").val(result);
-                }
-            )
-            }
+            // document.getElementById("showimg").onload = function () {
+            //     $.post('/login/code', {}, function (result) {
+            //             $("#randcode").val(result);
+            //         }
+            //     );
+            // }
         });
 
         function changecode() {
             var img = document.getElementById("showimg");
-            img.src = "<?php echo site_url('code/img');?>?" + Math.random(1);
+            img.src = "/login/getCode?" + Math.random(1);
             return;
         }
     </script>
@@ -159,8 +137,6 @@
                         <button type="button" name="sbtn" id="sbtn" class="btn btn-primary btn-lg btn-block comcolor ">登<i
                                 class="padding-left-30"></i>录
                         </button>
-                        <?php $this->load->view('common/form_view', array('action' => site_url('login'), 'submitbtn' =>
-                        'sbtn'));?>
                     </div>
                     <div class="padding-bottom-30">
                     </div>
