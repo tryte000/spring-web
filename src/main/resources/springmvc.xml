@@ -12,7 +12,7 @@
             http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--开启扫描，只扫描Controller-->
-    <context:component-scan base-package="org.nelg">
+    <context:component-scan base-package="org.nelg.SpringWeb">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 

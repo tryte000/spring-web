@@ -7,47 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <link rel="stylesheet" type="text/css" href="/css/stylesheets/fonts.useso.css">
-    <link rel="stylesheet" type="text/css" href="/css/stylesheets/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/stylesheets/main.css">
-    <link rel="stylesheet" type="text/css"
-          href="/css/stylesheets/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/stylesheets/titatoggle-dist-min.css">
-    <link rel="stylesheet" type="text/css" href="/css/stylesheets/minimal.css">
-    <link rel="stylesheet" type="text/css" href="/css/stylesheets/theme.css">
-    <link rel="stylesheet" type="text/css" href="/css/stylesheets/premium.css">
-    <link rel="stylesheet" type="text/css" href="/css/stylesheets/bootstrap-table.min.css">
-
-    <script type="text/javascript" src="/js/pub/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="/js/pub/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/pub/bootstrap-table.min.js"></script>
-    <script type="text/javascript" src="/js/pub/bootstrap-table-zh-CN.min.js"></script>
-
-
-    <script type="text/javascript" src="/js/layer/layer.js"></script>
-    <script type="text/javascript" src="/js/operate.js"></script>
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            changecode();
-            // document.getElementById("showimg").onload = function () {
-            //     $.post('/login/code', {}, function (result) {
-            //             $("#randcode").val(result);
-            //         }
-            //     );
-            // }
-        });
-
-        function changecode() {
-            var img = document.getElementById("showimg");
-            img.src = "/login/getCode?" + Math.random(1);
-            return;
-        }
-    </script>
-
 </head>
 
+<link rel="stylesheet" type="text/css" href="./css/stylesheets/fonts.useso.css">
+<link rel="stylesheet" type="text/css" href="./css/stylesheets/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./css/stylesheets/main.css">
+<link rel="stylesheet" type="text/css"
+      href="./css/stylesheets/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="./css/stylesheets/titatoggle-dist-min.css">
+<link rel="stylesheet" type="text/css" href="./css/stylesheets/minimal.css">
+<link rel="stylesheet" type="text/css" href="./css/stylesheets/theme.css">
+<link rel="stylesheet" type="text/css" href="./css/stylesheets/premium.css">
+<link rel="stylesheet" type="text/css" href="./css/stylesheets/bootstrap-table.min.css">
+
+<script type="text/javascript" src="./js/pub/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery.validate.js"></script>
+<script type="text/javascript" src="./js/pub/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/pub/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="./js/pub/bootstrap-table-zh-CN.min.js"></script>
+
+
+<script type="text/javascript" src="./js/layer/layer.js"></script>
+<script type="text/javascript" src="./js/operate.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        changecode();
+    });
+
+    function changecode() {
+        var img = document.getElementById("showimg");
+        img.src = "./login/getCode?" + Math.random(1);
+        return;
+    }
+</script>
 
 <body class="theme-logoin">
 
@@ -106,13 +99,12 @@
         <div class=" col-xs-12 col-md-4 col-sm-8  col-centered ">
             <div class="form-top">
                 <div class="bg_form_top comcolor">
-                    <img src="/images/pub/sign.png">
+                    <img src="./images/pub/sign.png">
                 </div>
             </div>
             <div class="form-bottom">
                 <p>账户登录</p>
-                <form class="form-horizontal" id="<?php echo $form->getId (); ?>" name="<?php echo $form->getId (); ?>"
-                      method="post" onsubmit="return false">
+                <form class="form-horizontal" id="loginForm" method="post" onsubmit="return false">
                     <div class="input-group padding-bottom-30">
                         <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
                         <input class="form-control input-lg" name="username" id="username" class="fsize"
@@ -121,9 +113,9 @@
                     </div>
                     <div class="input-group padding-bottom-30">
                         <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-                        <input class="form-control input-lg" type="password" name="password" id="password"
+                        <input class="form-control input-lg" type="passwd" name="passwd" id="passwd"
                                placeholder="密码">
-                        <span style="display:none" data-for="password"></span>
+                        <span style="display:none" data-for="passwd"></span>
                     </div>
                     <div class="input-group padding-bottom-30">
                         <input type="hidden" id="randcode"/>
@@ -149,13 +141,52 @@
 
 <script type="text/javascript">
     $("#code").attr("data-error-appendto", "#showimg");
-    form.submitedCallBack = function (data) {
-        window.location.reload();
-    }
+
     $("[rel=tooltip]").tooltip();
     $(function () {
-        $('.demo-cancel-click').click(function () {
-            return false;
+        // $('.demo-cancel-click').click(function () {
+        //     return false;
+        // });
+        // $("#loginForm").validate({
+        //     errorPlacement	: function(error, element) {
+        //         var temp = element.attr('data-error-appendto');
+        //         if (temp) {
+        //             temp = $(temp);
+        //         } else {
+        //             temp = element;
+        //         }
+        //
+        //         var oldindex = element.attr('data-layer-index');
+        //         if(oldindex>0){
+        //             layer.close(oldindex);
+        //         }
+        //         if(error.html()!=''){
+        //             var index = layer.tips(error.html(), temp, {time:0,tipsMore:true});
+        //             element.attr('data-layer-index',index);
+        //         }
+        //
+        //     },
+        //     errorElement : "span",
+        //     submitHandler: function (form) {
+        //         $(form).ajaxSubmit();
+        //     }
+        // });
+        // $("#username").rules("add",{
+        //     required: true,
+        //     message:{
+        //         required:"用户名必填"
+        //     }
+        // });
+
+        $("#sbtn").click(function () {
+            $.post("./login", {
+                submit: true,
+                username: $("#username").val(),
+                passwd: $("#passwd").val(),
+                code: $("#code").val()
+            }, function (data) {
+                console.log(data)
+            });
         });
     });
 </script>
